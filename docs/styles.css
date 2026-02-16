@@ -1,0 +1,845 @@
+body{
+    margin:0;
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#1e293b,#0f172a);
+}
+
+
+
+.title{
+    font-family: 'Great Vibes', cursive;
+    font-size:60px;
+    color:#ffffff;
+    letter-spacing:2px;
+    text-align:center;
+    margin-bottom:60px;
+    text-shadow:
+        0 4px 10px rgba(0,0,0,0.4),
+        0 0 20px rgba(255,150,180,0.3);
+}
+
+
+/* cake container */
+
+.cake{
+    position:relative;   /* VERY IMPORTANT */
+    width:260px;         /* restore original size */
+    height:200px;        /* restore original height */
+    margin:40px auto;
+}
+
+
+
+.cake-body{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:120px;
+    border-radius:30px;
+
+    /* cake sponge layers */
+    background:
+        linear-gradient(
+            to bottom,
+            #ff8fa3 0%,
+            #ff8fa3 35%,
+            #ffd1dc 35%,   /* cream layer */
+            #ffd1dc 42%,
+            #ff6b81 42%,
+            #ff6b81 78%,
+            #ffd1dc 78%,   /* second cream layer */
+            #ffd1dc 85%,
+            #ff4d6d 85%
+        );
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.4),
+        inset 0 5px 10px rgba(255,255,255,0.3);
+
+    overflow:hidden;
+}
+
+/* bottom cream decoration */
+
+.cake-body::after{
+    content:"";
+    position:absolute;
+    bottom:-10px;
+    left:0;
+    width:100%;
+    height:20px;
+
+    background:
+        radial-gradient(circle at 10px 10px, white 10px, transparent 11px);
+
+    background-size:20px 20px;
+}
+
+
+/* frosting */
+
+.frosting{
+    position:absolute;
+    bottom:110px;
+    width:100%;
+    height:40px;
+    background:white;
+    border-radius:50px;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* candle */
+
+.candle{
+    position:absolute;
+    width:14px;
+    height:40px;
+    background:linear-gradient(gold,#ffd700);
+    border-radius:5px;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:150px;
+}
+
+/* flame */
+
+.flame{
+    position:absolute;
+    top:-18px;
+    width:14px;
+    height:18px;
+    background:radial-gradient(circle, orange, red);
+    border-radius:50%;
+    animation:flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker{
+    from{ transform:scale(1); opacity:0.8;}
+    to{ transform:scale(1.2); opacity:1;}
+}
+
+/* smoke */
+
+.smoke-container{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.smoke{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:rgba(200,200,200,0.6);
+    border-radius:50%;
+    animation:smokeRise 2s forwards ease-out;
+}
+
+@keyframes smokeRise{
+
+    0%{
+        transform:translateY(0) scale(0.8);
+        opacity:0.7;
+    }
+
+    50%{
+        transform:translateY(-40px) scale(1.2);
+        opacity:0.5;
+    }
+
+    100%{
+        transform:translateY(-80px) scale(1.5);
+        opacity:0;
+    }
+}
+
+/* cherries */
+
+.cherries{
+    position:absolute;
+    bottom:125px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.cherry{
+    width:18px;
+    height:18px;
+    background:radial-gradient(circle at 30% 30%, #ff4d6d, #b30021);
+    border-radius:50%;
+    position:relative;
+    box-shadow:0 3px 6px rgba(0,0,0,0.3);
+}
+
+.cherry::after{
+    content:"";
+    position:absolute;
+    top:3px;
+    left:4px;
+    width:6px;
+    height:6px;
+    background:rgba(255,255,255,0.8);
+    border-radius:50%;
+}
+
+/* balloon container */
+
+.balloon-container{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+/* balloon */
+
+.balloon{
+    position:absolute;
+    top:-60px;
+    width:30px;
+    height:40px;
+    border-radius:50%;
+    animation:fallBalloon 6s linear forwards;
+}
+
+/* balloon string */
+
+.balloon::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:20px;
+    background:white;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* falling animation */
+
+@keyframes fallBalloon{
+
+    0%{
+        transform:translateY(-60px);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(110vh);
+        opacity:0.9;
+    }
+}
+
+/* ======================= */
+/* AESTHETIC BACKGROUND */
+/* ======================= */
+
+.bg-gallery{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* common image style */
+
+.bg-img{
+    position:absolute;
+    width:260px;
+    height:260px;
+    object-fit:cover;
+
+    border-radius:20px;
+
+    opacity:0.35;
+    filter:blur(2px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+
+    transition:0.5s;
+}
+
+/* aesthetic placement */
+
+.img1{
+    top:10%;
+    left:5%;
+    transform:rotate(-12deg);
+}
+
+.img2{
+    top:8%;
+    right:5%;
+    transform:rotate(10deg);
+}
+
+.img3{
+    bottom:10%;
+    left:10%;
+    transform:rotate(8deg);
+}
+
+.img4{
+    bottom:8%;
+    right:10%;
+    transform:rotate(-10deg);
+}
+
+
+.note{
+    color:rgba(255,255,255,0.7);
+    font-size:14px;
+    margin-top:-40px;
+    margin-bottom:40px;
+    letter-spacing:1px;
+    font-style:italic;
+    text-align:center;
+}
+
+
+/* ========================= */
+/* CENTRAL BALLOON - APPEARS AFTER CANDLE BLOW */
+/* ========================= */
+
+.central-balloon-container{
+    position:fixed;
+    top:40%;
+    left:70%;
+    transform:translate(-50%, -50%);
+
+    display:none; /* Hidden initially */
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+
+    z-index:999;
+
+    opacity:0;
+    transition:opacity 0.5s ease;
+}
+
+.central-balloon-container.show{
+    display:flex;
+    opacity:1;
+}
+
+.central-balloon{
+    width:120px;
+    height:150px;
+
+    background:linear-gradient(145deg, #ff6b81, #f368e0);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-weight:bold;
+    font-size:18px;
+    text-align:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 15px 35px rgba(255, 107, 129, 0.4),
+        inset 0 6px 12px rgba(255, 255, 255, 0.3);
+
+    animation:floatBalloon 2s ease-in-out infinite;
+
+    transition:all 0.3s ease;
+}
+
+.central-balloon::after{
+    content:"";
+    position:absolute;
+    bottom:-25px;
+    width:3px;
+    height:25px;
+    background:white;
+}
+
+.central-balloon:hover{
+    transform:scale(1.1);
+    box-shadow:
+        0 20px 40px rgba(255, 107, 129, 0.6),
+        inset 0 6px 12px rgba(255, 255, 255, 0.4);
+}
+
+.balloon-hint{
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    text-shadow:0 2px 4px rgba(0,0,0,0.3);
+    animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+    0%, 100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.7; transform:scale(1.05); }
+}
+
+@keyframes floatBalloon{
+    0%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+    100%{ transform:translateY(0); }
+}
+
+/* ========================= */
+/* MESSAGES GRID - 4x2 LAYOUT */
+/* ========================= */
+
+.messages-grid{
+    width:100%;
+    max-width:1200px;
+    margin:60px auto 40px;
+    padding:0 20px;
+
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:25px;
+
+    opacity:0;
+    transform:translateY(30px);
+    transition:all 0.8s ease;
+}
+
+.messages-grid.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* MESSAGE CARD - COMPACT ENVELOPE STYLE */
+
+.message-card{
+    background:linear-gradient(135deg, #fff5f7 0%, #ffe3ea 100%);
+    border-radius:12px;
+    padding:20px;
+
+    box-shadow:
+        0 6px 20px rgba(255, 107, 129, 0.15),
+        0 3px 8px rgba(0, 0, 0, 0.1);
+
+    text-align:center;
+
+    /* Hidden by default */
+    opacity:0;
+    transform:scale(0.8) rotateY(90deg);
+
+    transition:all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* VISIBLE STATE - REVEALED CARD */
+
+.message-card.visible{
+    opacity:1;
+    transform:scale(1) rotateY(0deg);
+}
+
+/* CARD ENVELOPE DESIGN */
+
+.card-envelope{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    height:100%;              /* important */
+}
+
+.card-text{
+    margin-top:auto;
+    margin-bottom:auto;       /* pushes it to vertical center */
+    font-size:17px;
+    color:#666;
+    line-height:1.5;
+}
+
+
+.card-title{
+    font-size:18px;
+    color:#ff4d6d;
+    margin:0;
+    font-weight:600;
+    line-height:1.3;
+}
+
+/* ========================= */
+/* FINAL BIRTHDAY MESSAGE */
+/* ========================= */
+
+.final-message{
+    width:100%;
+    max-width:800px;
+    margin:50px auto;
+    padding:40px;
+
+    background:linear-gradient(135deg, #ffd6e0 0%, #ffb3c1 100%);
+    border-radius:20px;
+    border:3px solid #ff6b81;
+
+    box-shadow:
+        0 15px 40px rgba(255, 107, 129, 0.3),
+        0 8px 20px rgba(0, 0, 0, 0.15);
+
+    text-align:center;
+
+    /* Hidden by default */
+    display:none;
+    opacity:0;
+    transform:scale(0.9) translateY(30px);
+
+    transition:all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.final-message.show{
+    display:block;
+    opacity:1;
+    transform:scale(1) translateY(0);
+}
+
+.final-title{
+    font-size:42px;
+    color:#c0006a;
+    margin:0 0 25px 0;
+    font-weight:700;
+    text-shadow:0 3px 6px rgba(192, 0, 106, 0.2);
+}
+
+.final-content{
+    font-size:15px;
+    line-height:1.8;
+    color:#333;
+}
+
+.final-content p{
+    margin:15px 0;
+}
+
+/* ========================= */
+/* GIFT REVEAL BUTTON */
+/* ========================= */
+
+.gift-reveal-btn{
+    margin-top:30px;
+    padding:18px 40px;
+
+    font-size:22px;
+    font-weight:700;
+    color:white;
+
+    background:linear-gradient(135deg, #ff6b81 0%, #ff4d6d 100%);
+    border:none;
+    border-radius:50px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(255, 107, 129, 0.4),
+        inset 0 2px 6px rgba(255, 255, 255, 0.3);
+
+    transition:all 0.3s ease;
+
+    animation:pulse-glow 2s ease-in-out infinite;
+}
+
+.gift-reveal-btn:hover{
+    transform:scale(1.05);
+    box-shadow:
+        0 12px 30px rgba(255, 107, 129, 0.6),
+        inset 0 2px 6px rgba(255, 255, 255, 0.4);
+}
+
+.gift-reveal-btn:active{
+    transform:scale(0.98);
+}
+
+@keyframes pulse-glow{
+    0%, 100%{
+        box-shadow:
+            0 8px 20px rgba(255, 107, 129, 0.4),
+            inset 0 2px 6px rgba(255, 255, 255, 0.3);
+    }
+    50%{
+        box-shadow:
+            0 8px 25px rgba(255, 107, 129, 0.6),
+            0 0 30px rgba(255, 107, 129, 0.4),
+            inset 0 2px 6px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* ========================= */
+/* GIFT CARD SECTION */
+/* ========================= */
+
+.gift-card-section{
+    margin-top:30px;
+    padding:30px;
+
+    background:linear-gradient(135deg, #fff5f7 0%, #ffe3ea 100%);
+    border-radius:15px;
+    border:2px solid #ff6b81;
+
+    /* Hidden by default */
+    display:none;
+    opacity:0;
+    transform:scale(0.9);
+
+    transition:all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gift-card-section.show{
+    display:block;
+    opacity:1;
+    transform:scale(1);
+
+    animation:gift-reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes gift-reveal{
+    0%{
+        opacity:0;
+        transform:scale(0.5) rotateY(90deg);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1) rotateY(0deg);
+    }
+}
+
+.gift-card-container{
+    text-align:center;
+}
+
+.gift-card-title{
+    font-size:32px;
+    color:#ff4d6d;
+    margin:0 0 25px 0;
+    font-weight:700;
+    text-shadow:0 2px 4px rgba(255, 77, 109, 0.2);
+}
+
+/* ========================= */
+/* VOUCHER CODE BOX */
+/* ========================= */
+
+.voucher-code-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        inset 0 2px 6px rgba(255, 107, 129, 0.1);
+
+    margin:20px 0;
+}
+
+.voucher-label{
+    font-size:16px;
+    color:#666;
+    margin:0 0 15px 0;
+    font-weight:600;
+}
+
+.voucher-code{
+    font-size:28px;
+    font-weight:700;
+    color:#c0006a;
+    font-family:'Courier New', monospace;
+
+    background:linear-gradient(135deg, #ffe3ea 0%, #ffd6e0 100%);
+    padding:15px 25px;
+    border-radius:8px;
+    border:2px dashed #ff6b81;
+
+    margin:15px 0;
+
+    letter-spacing:2px;
+
+    word-break:break-all;
+}
+
+.copy-code-btn{
+    margin-top:15px;
+    padding:12px 30px;
+
+    font-size:16px;
+    font-weight:600;
+    color:white;
+
+    background:linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+    border:none;
+    border-radius:25px;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(29, 209, 161, 0.3);
+
+    transition:all 0.3s ease;
+}
+
+.copy-code-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(29, 209, 161, 0.4);
+}
+
+.copy-code-btn:active{
+    transform:translateY(0);
+}
+
+.gift-message{
+    font-size:18px;
+    color:#ff4d6d;
+    margin:20px 0 0 0;
+    font-weight:600;
+}
+
+/* ========================= */
+/* RESPONSIVE - MOBILE */
+/* ========================= */
+
+@media (max-width: 1024px){
+    .messages-grid{
+        grid-template-columns:repeat(2, 1fr);
+        gap:20px;
+    }
+}
+
+@media (max-width: 600px){
+    .messages-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .central-balloon{
+        width:100px;
+        height:125px;
+        font-size:16px;
+    }
+
+    .final-title{
+        font-size:32px;
+    }
+
+    .final-content{
+        font-size:16px;
+    }
+}
+
+.memory-image{
+
+    width:100%;
+    margin-top:10px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25);
+}
+
+.memory-image img{
+
+    width:100%;
+    height:auto;
+    display:block;
+
+    border-radius:10px;
+
+    transition:0.3s;
+}
+
+/* subtle premium hover */
+
+.memory-image img:hover{
+
+    transform:scale(1.03);
+}
+
+/* PASSWORD SCREEN */
+
+.password-screen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#ffe6eb,#fff5f7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    font-family:sans-serif;
+}
+
+.password-box{
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    text-align:center;
+    width:300px;
+}
+
+.lock-title{
+    margin:0 0 10px;
+    color:#ff4d6d;
+}
+
+.password-hint{
+    font-size:13px;
+    color:#888;
+    margin-bottom:20px;
+}
+
+#passwordInput{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    outline:none;
+    transition:0.3s;
+    margin-bottom:15px;
+}
+
+#passwordInput:focus{
+    border-color:#ff4d6d;
+    box-shadow:0 0 0 3px rgba(255,77,109,0.15);
+}
+
+.unlock-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.unlock-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(255,77,109,0.4);
+}
+
+.error-msg{
+    color:red;
+    margin-top:10px;
+    font-size:13px;
+}
+
+

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday 🎂</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen" class="password-screen">
+
+    <div class="password-box">
+
+        <h2 class="lock-title">🔒 Secret Birthday Access</h2>
+
+        <p class="password-hint">
+            Hint: DOB format (DD-MM) 😉
+        </p>
+
+        <input type="password"
+               id="passwordInput"
+               placeholder="Enter password">
+
+        <button class="unlock-btn" onclick="checkPassword()">
+            Unlock 🎁
+        </button>
+
+        <p id="errorMsg" class="error-msg"></p>
+
+    </div>
+
+</div>
+
+
+<div id="mainContent" style="display:none;">
+
+<h1 class="title">Happy Birthday Shreya Joshi ✨</h1>
+<p class="note">Note: Double click on candle 🕯️</p>
+
+<!-- BACKGROUND IMAGES -->
+
+    <div class="bg-gallery">
+
+        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3" class="bg-img img1">
+
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d" class="bg-img img2">
+
+        <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84" class="bg-img img3">
+
+        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce" class="bg-img img4">
+
+    </div>
+
+
+<!-- CAKE -->
+
+<div class="cake">
+
+    <div class="candle" id="candle">
+        <div class="flame" id="flame"></div>
+        <div class="smoke-container" id="smoke"></div>
+    </div>
+
+    <div class="balloon-container" id="balloons"></div>
+
+    <div class="cake-body"></div>
+    <div class="frosting"></div>
+
+    <div class="cherries">
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+    </div>
+
+</div>
+
+<!-- CENTRAL BALLOON FOR REVEALING MESSAGES -->
+
+<div class="central-balloon-container" id="centralBalloonContainer">
+    <div class="central-balloon" id="centralBalloon">
+        <span>🎈<br>Pop Me!</span>
+    </div>
+</div>
+
+<!-- MESSAGE CARDS IN GRID - 4x2 LAYOUT -->
+
+<div class="messages-grid" id="messages">
+
+    <!-- ROW 1 - 4 Cards -->
+
+    <div class="message-card" data-index="2">
+        <div class="card-envelope">
+            <h3 class="card-title">First Message Chaos 😄</h3>
+            <div class="memory-image">
+                <img src="images/first-conversation.jpeg" alt="First conversation">
+            </div>
+        </div>
+    </div>
+
+    <div class="message-card" data-index="0">
+        <div class="card-envelope">
+            <h3 class="card-title">Hey Hi Heh 💌</h3>
+            <p class="card-text">
+                Hello <s>Pravin</s> Praveen !!!
+            </p>
+        </div>
+    </div>
+
+    <div class="message-card" data-index="1">
+        <div class="card-envelope">
+            <h3 class="card-title">Kab Switch karoge?? 😄</h3>
+            <p class="card-text">The eternal question!</p>
+        </div>
+    </div>
+
+    <div class="message-card" data-index="3">
+        <div class="card-envelope">
+            <h3 class="card-title">Kaunn Tez ?? 😄</h3>
+            <p class="card-text">Its always <s>Garhwali</s> Kumaoni</p>
+        </div>
+    </div>
+
+    <!-- ROW 2 - 4 Cards -->
+    <div class="message-card" data-index="6">
+        <div class="card-envelope">
+            <h3 class="card-title">Tum Sunaoo… 🗣️</h3>
+            <p class="card-text">How to continue convo!</p>
+        </div>
+    </div>
+
+    <div class="message-card" data-index="4">
+        <div class="card-envelope">
+            <h3 class="card-title">Bhaiiii......</h3>
+            <p class="card-text">Who even replies to every reel ???</p>
+        </div>
+    </div>
+
+    <div class="message-card" data-index="5">
+        <div class="card-envelope">
+            <h3 class="card-title">Fashion Influenzzza 👗</h3>
+            <p class="card-text">Slaying in every outfit and giving advice too !!!</p>
+        </div>
+    </div>
+
+    <div class="message-card" data-index="7">
+        <div class="card-envelope">
+            <h3 class="card-title">Only Online Friend 😄</h3>
+            <p class="card-text">Do such thing exist !!!</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- FINAL BIRTHDAY MESSAGE (APPEARS AFTER ALL 8 CARDS) -->
+
+<div class="final-message" id="finalMessage">
+    <h2 class="final-title">🎉 Happy Birthday Shreya! 🎂</h2>
+    <div class="final-content">
+        <p>Wishing you the happiest, most happening birthday full of laughter, love, and beautiful memories. </p>
+        <p>May this year and all the ones ahead bring you success, happiness, and everything your heart deserves.</p>
+        <p>I’m not sure about your relationship status now, but I remember you once being into someone and honestly, that person must be incredibly lucky.</p>
+        <p>You’re truly one of the sweetest souls I know.</p>
+        <p>Also, I’ll always be grateful for getting introduced to Pahadi culture through you, that’s something special I’ll carry forward.</p>
+        <p>And Please Don't say No the gift.</p>
+        <p>Keep shining bright! ✨</p>
+    </div>
+
+    <!-- Gift Reveal Button -->
+    <button class="gift-reveal-btn" id="giftRevealBtn">
+        🎁 Click to Reveal Your Gift! 🎁
+    </button>
+
+    <!-- Hidden Gift Card Section -->
+    <div class="gift-card-section" id="giftCardSection">
+        <div class="gift-card-container">
+            <h3 class="gift-card-title">🎉 Amazon Gift Card 🎉</h3>
+            <div class="voucher-code-box">
+                <p class="voucher-label">Your Voucher Code:</p>
+                <div class="voucher-code" id="voucherCode">AMZN-HBDY-2026-SHREYA</div>
+                <button class="copy-code-btn" id="copyCodeBtn">📋 Copy Code</button>
+            </div>
+            <p class="gift-message">Enjoy your shopping! 🛍️✨</p>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
