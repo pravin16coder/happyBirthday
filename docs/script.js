@@ -13,6 +13,7 @@ const centralBalloon = document.getElementById("centralBalloon");
 const finalMessage = document.getElementById("finalMessage");
 
 const messageCards = document.querySelectorAll(".message-card");
+const birthdayMusic = document.getElementById("birthdayMusic");
 
 let balloonInterval = null;
 let candleBlown = false;
@@ -26,6 +27,14 @@ candle.addEventListener("dblclick", () => {
     if (candleBlown) return;
     candleBlown = true;
 
+    // Play soft birthday music
+    if (birthdayMusic) {
+        birthdayMusic.volume = 0.3; // soft background volume (0.0 to 1.0)
+        birthdayMusic.currentTime = 0;
+        birthdayMusic.play().catch(err => {
+            console.log("Playback prevented:", err);
+        });
+    }
     flame.style.display = "none";
 
     // Smoke effect
